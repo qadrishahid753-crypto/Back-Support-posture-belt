@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -60,7 +59,7 @@
 <div class="row total"><span>Total Amount</span><b id="tt">Rs. 1,199</b></div>
 </div>
 <button class="orderBtn" type="submit">CONFIRM ORDER</button>
-<p style="margin:12px 0 0;color:#737d76;font-size:11px;line-height:1.5;text-align:center">Your details are used only to display this order confirmation on this page. No Google Sheet or Meta Pixel tracking is connected.</p>
+<p style="margin:12px 0 0;color:#737d76;font-size:11px;line-height:1.5;text-align:center">Your order details will be sent to our order system for processing. No Meta Pixel tracking is installed.</p>
 </form>
 </div></div></section>
 
@@ -118,6 +117,8 @@
 </section>
 
 <script>
+// Paste your deployed Google Apps Script Web App URL between the quotes below.
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwI3vVhJhM4OIgekOuhW7nRGqsfBpvTL9uf5V-J-0aL_kBY-UtG1tyfStiRJLXvWGXv/exec';
 const unit=999,delivery=200,q=document.getElementById('qty');
 function calc(){
  const n=+q.value;
@@ -150,6 +151,30 @@ document.getElementById('form').addEventListener('submit',e=>{
 
  const n=+q.value;
  const orderNo='#PB'+Date.now().toString().slice(-8);
+ const orderData = {
+   orderNumber: orderNo,
+   orderId: orderNo,
+   name: document.getElementById('name').value.trim(),
+   phone: phone.value,
+   city: document.getElementById('city').value.trim(),
+   address: document.getElementById('address').value.trim(),
+   landmark: document.getElementById('landmark').value.trim(),
+   quantity: n,
+   productPrice: unit*n,
+   delivery: delivery,
+   total: unit*n+delivery,
+   paymentMethod: 'Cash on Delivery',
+   orderTime: new Date().toISOString()
+ };
+ // Send the order to the connected Google Apps Script Web App.
+ if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes('PASTE_YOUR_')) {
+   fetch(GOOGLE_SCRIPT_URL, {
+     method: 'POST',
+     mode: 'no-cors',
+     headers: {'Content-Type': 'text/plain;charset=utf-8'},
+     body: JSON.stringify(orderData)
+   }).catch(err => console.error('Order submission failed:', err));
+ }
 
  document.getElementById('orderNo').textContent=orderNo;
  document.getElementById('cName').textContent=document.getElementById('name').value.trim();
