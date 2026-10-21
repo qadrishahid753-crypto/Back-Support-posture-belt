@@ -21,20 +21,6 @@
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 @media(max-width:720px){.wrap{padding:0 15px}.heroGrid,.showGrid{grid-template-columns:1fr}.hero h1{font-size:39px}.photo{order:-1}.stripGrid{grid-template-columns:1fr 1fr;gap:20px}.features{grid-template-columns:1fr 1fr}.form{grid-template-columns:1fr;gap:14px}.full{grid-column:auto}.orderCard{padding:20px}.orderBtn{padding:16px}.reviews{grid-template-columns:1fr}.section{padding:48px 0}.showGrid h2{font-size:32px}}
 </style>
-<!-- TikTok Pixel Code Start -->
-<script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];
-  ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];
-  ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};
-  for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
-  ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};
-  ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=r;ttq._t=ttq._t||{};ttq._t[e]=+new Date;ttq._o=ttq._o||{};ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-  ttq.load('DBCEEB3C77U4SEFNFGDG');
-  ttq.page();
-}(window, document, 'ttq');
-</script>
-<!-- TikTok Pixel Code End -->
 </head>
 <body>
 <div id="site">
@@ -134,8 +120,6 @@
 // Paste your deployed Google Apps Script Web App URL between the quotes below.
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby3lTl2CwIJKgekMu8xBmz4r4krmkPOHqi5vw3vKWhFLt3qDtwh8XDTdPKiR2hS4nX-/exec';
 const unit=999,delivery=200,q=document.getElementById('qty');
-let tikTokPurchaseTracked = false;
-let tikTokPurchaseTracked = false;
 function calc(){
  const n=+q.value;
  document.getElementById('pp').textContent='Rs. '+(unit*n).toLocaleString();
@@ -209,16 +193,6 @@ document.getElementById('form').addEventListener('submit',e=>{
 
 document.getElementById('site').style.display='none';
 document.getElementById('thanks').style.display='block';
-// TikTok standard CompletePayment event: fire once when the Thank You page appears.
-if (!tikTokPurchaseTracked && window.ttq && typeof window.ttq.track === 'function') {
-  window.ttq.track('CompletePayment', {
-    value: unit*n+delivery,
-    currency: 'PKR',
-    content_type: 'product',
-    contents: [{content_id: 'back-posture-corrector-belt', content_name: 'Back Posture Corrector Belt', quantity: n, price: unit}]
-  });
-  tikTokPurchaseTracked = true;
-}
 document.title='Thank You for Your Order | Back Posture Corrector Belt';
 if (window.history && window.history.pushState) window.history.pushState({page:'thank-you'}, '', '#thank-you');
 window.scrollTo({top:0,behavior:'instant'});
