@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Order the Back Posture Corrector Belt. Cash on Delivery available.">
 <title>Back Posture Corrector Belt | Order Online</title>
+<!-- TikTok Pixel Code Start -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([t[e].name].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a)};
+  ttq.load('DBCEON3C77UASCMGEMPG');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+<!-- TikTok Pixel Code End -->
+
 <style>
 *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f5f2;color:#10151b}.wrap{max-width:1080px;margin:auto;padding:0 22px}
 .top{height:36px;background:#174c3a;color:#fff;display:flex;align-items:center;overflow:hidden;white-space:nowrap;font-size:11px;font-weight:800;letter-spacing:.5px}.top div{padding-left:100%;animation:move 25s linear infinite}.top span{margin:0 38px}@keyframes move{to{transform:translateX(-100%)}}
@@ -193,6 +203,18 @@ document.getElementById('form').addEventListener('submit',e=>{
 
 document.getElementById('site').style.display='none';
 document.getElementById('thanks').style.display='block';
+// Count the order as TikTok's CompletePayment (Purchase) event on the thank-you page.
+// This runs only after the customer submits the order form and sees the confirmation page.
+if (window.ttq && typeof window.ttq.track === 'function') {
+  window.ttq.track('CompletePayment', {
+    value: unit*n + delivery,
+    currency: 'PKR',
+    contents: [{ content_id: 'back-posture-corrector-belt', content_type: 'product', quantity: n, price: unit }],
+    content_type: 'product'
+  });
+}
+
+
 document.title='Thank You for Your Order | Back Posture Corrector Belt';
 if (window.history && window.history.pushState) window.history.pushState({page:'thank-you'}, '', '#thank-you');
 window.scrollTo({top:0,behavior:'instant'});
