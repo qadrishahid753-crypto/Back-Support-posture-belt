@@ -118,7 +118,7 @@
 
 <script>
 // Paste your deployed Google Apps Script Web App URL between the quotes below.
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwI3vVhJhM4OIgekOuhW7nRGqsfBpvTL9uf5V-J-0aL_kBY-UtG1tyfStiRJLXvWGXv/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby3lTl2CwIJKgekMu8xBmz4r4krmkPOHqi5vw3vKWhFLt3qDtwh8XDTdPKiR2hS4nX-/exec';
 const unit=999,delivery=200,q=document.getElementById('qty');
 function calc(){
  const n=+q.value;
@@ -196,6 +196,19 @@ document.getElementById('thanks').style.display='block';
 document.title='Thank You for Your Order | Back Posture Corrector Belt';
 if (window.history && window.history.pushState) window.history.pushState({page:'thank-you'}, '', '#thank-you');
 window.scrollTo({top:0,behavior:'instant'});
+
+// Speak a short confirmation after the thank-you page appears.
+if ('speechSynthesis' in window) {
+  window.speechSynthesis.cancel();
+  const confirmation = new SpeechSynthesisUtterance(
+    'Thank you for your order. Your order has been confirmed. We will deliver it within four to six days. Thank you.'
+  );
+  confirmation.lang = 'en-US';
+  confirmation.rate = 0.92;
+  confirmation.pitch = 1;
+  // A short delay helps ensure the thank-you page is visible before speaking.
+  setTimeout(() => window.speechSynthesis.speak(confirmation), 350);
+}
 });
 </script>
 </body>
